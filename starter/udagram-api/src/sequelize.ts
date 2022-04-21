@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import { config } from "./config/config";
 
+console.log({user: config.username, pass: config.password, db: config.database, host: config.host, port: config.port})
 export const sequelize = new Sequelize({
   username: config.username,
   password: config.password,
@@ -9,5 +10,9 @@ export const sequelize = new Sequelize({
   port: config.port,
 
   dialect: "postgres",
-  storage: ":memory:",
+  // storage: ":memory:",
 });
+
+// export const sequelize = new Sequelize(
+//   config.databaseUrl
+// );

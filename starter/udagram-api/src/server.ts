@@ -11,11 +11,15 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
 (async () => {
   dotenv.config();
 
-  await sequelize.addModels(V0_FEED_MODELS);
-  await sequelize.addModels(V0_USER_MODELS);
-  await sequelize.sync();
+  try{
+    await sequelize.addModels(V0_FEED_MODELS);
+    await sequelize.addModels(V0_USER_MODELS);
+    await sequelize.authenticate();
+    console.log("Database Connected");
+  }catch(err){
+    if(err instanceof Error) console.log("Can NOT Connect to DB", err);
+  }
 
-  console.log("Database Connected");
 
   const app = express();
   const port = process.env.PORT || 8080;
@@ -33,7 +37,7 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
 
   // Start the Server
   app.listen(port, () => {
-    console.log(`server running ${process.env.URL}`);
+    console.log(`server running ${port}`);
     console.log(`press CTRL+C to stop server`);
   });
 })();
