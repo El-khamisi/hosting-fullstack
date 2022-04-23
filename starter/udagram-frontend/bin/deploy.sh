@@ -1,1 +1,1 @@
-aws cp --recursive --acl public-read ./build s3://cupcake1234/
+aws s3 cp --recursive --acl public-read ./www s3://cupcake1234/
