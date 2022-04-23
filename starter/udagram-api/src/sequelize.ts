@@ -10,9 +10,5 @@ export const sequelize = new Sequelize({
   port: config.port,
 
   dialect: "postgres",
-  // storage: ":memory:",
+  storage: ":memory:",
 });
-
-// export const sequelize = new Sequelize(
-//   config.databaseUrl
-// );
