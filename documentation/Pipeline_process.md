@@ -14,9 +14,27 @@ jobs:
       - image: "cimg/base:stable"
     steps:
       - node/install
-      - checkout
-      - aws-cli/setup
-      - eb/setup
+      - run:        #install Frontend dependencies
+          name: Front-End Install    
+          command: |
+            npm run frontend:install
+      - run:        #build frontend 
+          name: Front-End Build
+          command: |
+            npm run frontend:build
+      - run:        #test frontend
+          name: Front-End Test
+          command: |
+            npm run frontend:test
+
+  deploy:
+    docker:
+      - image: "cimg/base:stabel"
+    steps:
+      -node/install
+      -checkout
+      -aws-cli/setup
+      -eb/setup
       - run:        #install Frontend dependencies
           name: Front-End Install    
           command: |
@@ -33,19 +51,6 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
-      - run:        #test frontend
-          name: Front-End Test
-          command: |
-            npm run frontend:test
-
-  deploy:
-    docker:
-      - image: "cimg/base:stabel"
-    steps:
-      -node/install
-      -checkout
-      -aws-cli/setup
-      -eb/setup
         - run:        #deploy frontend on S3
           name: Deploy Frontend
           command: |
