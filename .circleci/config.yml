@@ -52,7 +52,7 @@ jobs:
 workflows:
   workflow:
     jobs:
-      - install/test:
+      - install-test:
           filters:
             branches:
               only: master      
