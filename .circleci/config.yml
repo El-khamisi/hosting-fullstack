@@ -54,9 +54,17 @@ jobs:
           command: |
             npm run frontend:deploy
       - run:
-          name: Deploy Backend
+          name: Clean old EB env
           command: |
-            npm run backend:all
+            npm run backend:cleanenv
+      - run:
+          name: Set new EB env
+          command: |
+            npm run backend:setenv
+      - run:
+          name: Deploy Backend 
+          command: |
+            npm run backend:deploy
 
 
 workflows:
