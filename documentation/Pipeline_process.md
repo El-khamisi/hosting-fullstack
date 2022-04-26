@@ -69,7 +69,7 @@ workflows:
               only: master      
       - debploy:
           requires:
-          - install-test
+          - test-frontend
           filters:
             branches:
               only: master
