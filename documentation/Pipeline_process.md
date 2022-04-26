@@ -9,7 +9,7 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1     #install eb
 
 jobs:
-  build:
+  install-test:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -37,21 +37,35 @@ jobs:
           name: Front-End Test
           command: |
             npm run frontend:test
-      - run:        #deploy frontend on S3
+
+  deploy:
+    docker:
+      - image: "cimg/base:stabel"
+    steps:
+      -node/install
+      -checkout
+      -aws-cli/setup
+      -eb/setup
+        - run:        #deploy frontend on S3
           name: Deploy Frontend
           command: |
             npm run frontend:deploy
-      - run:        #deploy backend to EB
+       - run:        #deploy backend to EB
           name: Deploy Backend
           command: |
             npm run backend:all
 
-
 workflows:
   workflow:
     jobs:
-      - build:
-         filters:
+      - install-test:
+          filters:
+            branches:
+              only: master      
+      - debploy:
+          requires:
+          - install-test
+          filters:
             branches:
               only: master
 ```
