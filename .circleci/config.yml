@@ -57,6 +57,8 @@ workflows:
             branches:
               only: master      
       - debploy:
-         filters:
+          requires:
+          - install-test
+          filters:
             branches:
               only: master
