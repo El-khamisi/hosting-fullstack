@@ -5,14 +5,12 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1
 
 jobs:
-  build:
+  install/test:
     docker:
-      - image: "cimg/base:stable"
+      - image: "circleci/node:10-browsers"
     steps:
       - node/install
       - checkout
-      - aws-cli/setup
-      - eb/setup
       - run:
           name: Front-End Install
           command: |
@@ -33,6 +31,14 @@ jobs:
           name: Front-End Test
           command: |
             npm run frontend:test
+
+      
+  debploy:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - aws-cli/setup
+      - eb/setup
       - run:
           name: Deploy Frontend
           command: |
@@ -46,7 +52,11 @@ jobs:
 workflows:
   workflow:
     jobs:
-      - build:
+      - install/test:
+          filters:
+            branches:
+              only: master      
+      - debploy:
          filters:
             branches:
               only: master
