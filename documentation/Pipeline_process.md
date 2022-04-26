@@ -55,10 +55,14 @@ jobs:
           name: Deploy Frontend
           command: |
             npm run frontend:deploy
+        - run:
+          name: Set new EB env
+          command: |
+            npm run backend:setenv
        - run:        #deploy backend to EB
           name: Deploy Backend
           command: |
-            npm run backend:all
+            npm run backend:deploy
 
 workflows:
   workflow:
