@@ -10,7 +10,7 @@
         "backend:cleanenv": "cd starter/udagram-api/www && eb terminate --force Hostingfullstack && eb create Hostingfullstack",
         "backend:setenv": "eb setenv PORT=$PORT  POSTGRES_USERNAME=$POSTGRES_USERNAME  POSTGRES_PASSWORD=$POSTGRES_PASSWORD  POSTGRES_DB=$POSTGRES_DB    PORT_DB=$PORT_DB    POSTGRES_HOST=$POSTGRES_HOST   AWS_REGION=$AWS_REGION    AWS_BUCKET=$AWS_BUCKET  JWT_SECRET=$JWT_SECRET",
         "backend:deploy":   "cd starter/udagram-api/www && eb use Hostingfullstack &&  eb deploy Hostingfullstack",
-        "backend:all": "npm run backend:cleanEnv && npm run backend:setenv && npm run backend:deploy"
+        "backend:all": "npm run backend:cleanenv && npm run backend:setenv && npm run backend:deploy"
     },
     "devDependencies": {}
 }
