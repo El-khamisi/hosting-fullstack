@@ -9,7 +9,7 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1     #install eb
 
 jobs:
-  install-test:
+  test-frontend:
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -63,7 +63,7 @@ jobs:
 workflows:
   workflow:
     jobs:
-      - install-test:
+      - test-frontend:
           filters:
             branches:
               only: master      

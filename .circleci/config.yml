@@ -61,7 +61,7 @@ jobs:
 workflows:
   workflow:
     jobs:
-      - install-test:
+      - test-frontend:
           filters:
             branches:
               only: master      
