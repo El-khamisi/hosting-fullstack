@@ -10,6 +10,7 @@ jobs:
       - image: "circleci/node:10-browsers"
     steps:
       - node/install
+      - checkout
       - run:
           name: Front-End Install
           command: |
