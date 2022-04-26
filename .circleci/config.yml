@@ -5,7 +5,7 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1
 
 jobs:
-  install/test:
+  install-test:
     docker:
       - image: "circleci/node:10-browsers"
     steps:
