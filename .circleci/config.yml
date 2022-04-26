@@ -50,7 +50,4 @@ jobs:
 workflows:
   workflow:
     jobs:   
-      - debploy:
-          filters:
-            branches:
-              only: master
+      - debploy
