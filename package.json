@@ -7,9 +7,9 @@
         "backend:build": "cd starter/udagram-api && npm run build",
         "frontend:test": "cd starter/udagram-frontend && npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI",
         "frontend:deploy": "cd starter/udagram-frontend && npm run deploy",
-        "backend:cleanenv": "cd starter/udagram-api && cp -r .elasticbeanstalk/ www/ && cd ./www && eb use Hostingfullstack &&  eb terminate --force Hostingfullstack && eb create Hostingfullstack",
-        "backend:setenv": "eb setenv PORT=$PORT  POSTGRES_USERNAME=$POSTGRES_USERNAME  POSTGRES_PASSWORD=$POSTGRES_PASSWORD  POSTGRES_DB=$POSTGRES_DB    PORT_DB=$PORT_DB    POSTGRES_HOST=$POSTGRES_HOST   AWS_REGION=$AWS_REGION    AWS_BUCKET=$AWS_BUCKET  JWT_SECRET=$JWT_SECRET",
-        "backend:deploy":   "cd starter/udagram-api/www && eb use Hostingfullstack &&  eb deploy Hostingfullstack",
+        "backend:cleanenv": "cd starter/udagram-api/www && eb use Hostingfullstack &&  eb terminate --force Hostingfullstack",
+        "backend:setenv": " eb create Hostingfullstack && eb use Hostingfullstack && eb setenv PORT=$PORT  POSTGRES_USERNAME=$POSTGRES_USERNAME  POSTGRES_PASSWORD=$POSTGRES_PASSWORD  POSTGRES_DB=$POSTGRES_DB    PORT_DB=$PORT_DB    POSTGRES_HOST=$POSTGRES_HOST   AWS_REGION=$AWS_REGION    AWS_BUCKET=$AWS_BUCKET  JWT_SECRET=$JWT_SECRET",
+        "backend:deploy":   "eb use Hostingfullstack &&  eb deploy Hostingfullstack",
         "backend:all": "npm run backend:cleanenv && npm run backend:setenv && npm run backend:deploy"
     },
     "devDependencies": {}
