@@ -35,8 +35,7 @@ jobs:
       - eb/setup
       - run:
           name: Deploy Backend
-          command: |
-            eb use Hostingfullstack
+          command: eb use Hostingfullstack
 
 
 workflows:
